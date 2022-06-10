@@ -1,0 +1,28 @@
+.figure {
+    text-align: center;
+    transition:all 0.2s ease;
+}
+
+.figure figcaption {
+    max-width: 30rem;
+    margin: auto;
+}
+
+.figure img {
+    transition:all 0.2s ease;
+    margin: var(--space--xs);
+    z-index: 1;
+    width: auto !important;
+    min-width: unset !important;
+    max-width: unset !important;
+}
+
+.figure img:hover {
+    outline: 1rem solid white;
+    -webkit-transform:scale(2);
+    transform: scale(2);
+}
+
+.figure span:firt-of-type {
+    overflow: unset !important;
+}

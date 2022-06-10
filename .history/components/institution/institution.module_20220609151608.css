@@ -1,0 +1,19 @@
+details {
+    width: 100%;
+}
+
+.images__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+   justify-content: center;
+
+}
+
+summary {
+    padding: 20px 0;
+}
+
+summary::marker {
+  font-size: 32px;
+}
