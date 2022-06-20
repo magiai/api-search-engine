@@ -1,0 +1,14 @@
+.form--search--artworks {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-top: var(--space--l);
+}
+
+.form--search--artworks label {
+    margin-right: var(--space--m);
+}
+
+.form--search--artworks button {
+    margin-left: var(--space--s);
+}
