@@ -1,0 +1,27 @@
+.form--search--artworks {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-top: var(--space--xl);
+}
+
+.form--search--artworks label {
+    margin-right: var(--space--m);
+}
+
+@media only screen and (min-width: 769px) {
+    .form--search--artworks button {
+        margin-left: var(--space--s);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .form--search--artworks {
+        flex-direction: column;
+    }
+
+    #search-input,
+    .form--search--artworks button {
+        width: 100%;
+    }
+}
