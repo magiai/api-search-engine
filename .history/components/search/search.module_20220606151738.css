@@ -1,8 +1,0 @@
-.form--search--artworks {
-    display: flex;
-    align-items: baseline;
-}
-
-.form--search--artworks label {
-    margin-right: var(--space--m)
-}

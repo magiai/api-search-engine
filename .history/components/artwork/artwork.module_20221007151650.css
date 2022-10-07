@@ -1,0 +1,49 @@
+.figure,
+.figure img {
+    transition: transform 0.2s ease;
+}   
+
+.figure {
+    text-align: center;
+}
+
+.figure figcaption {
+    max-width: min(50rem, 90vw);
+    margin: auto;
+}
+
+.figure span:first-child {
+    position: relative !important;
+    overflow: unset !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .figure span:first-child {
+        height: 36rem !important;
+        width: 36rem !important;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .figure span:first-child {
+        height: 50rem !important;
+        width: 50rem !important;
+    }
+}
+
+.figure img {
+    margin: var(--space--xs);
+    z-index: 1;
+    object-fit: contain;
+    transform: scale(0.8);
+}
+
+.figure:hover img {
+    -webkit-transform:scale(1.3);
+    transform: scale(1.3);
+    z-index: 2;
+}
+
+.figure img[aria-hidden="true"] {
+    display: none !important;
+}
