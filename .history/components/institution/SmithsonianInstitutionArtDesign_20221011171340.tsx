@@ -4,17 +4,18 @@ import { Artwork } from "../artwork/Artwork"
 import { useApi, IApiResponse } from "../../api/useApiHook"
 import getSearchedPhrase  from "../search/searchedPhrase"
 
-export const AlbertAndVictoriaMuseum = (): JSX.Element => {
+export const SmithsonianInstitutionArtDesign = (): JSX.Element => {
     let artworksArray = []
-    const [artworksWithPictures, setArtworksWithPictures] = useState<any[]>([])
-    const urlStart = 'https://api.vam.ac.uk/v2/objects/search?q=$'
-    const apiUrl: string = urlStart + getSearchedPhrase()
+    let [artworksWithPictures, setArtworksWithPictures] = useState<any[]>([])
+    const urlStart: string = 'https://api.si.edu/openaccess/api/v1.0/category/art_design/search?q='
+    const urlEnd: string = '&api_key=h4EFHdtQ2Buaa56YASGozM68gzw1NFka61spYM44&rows=50'
+    const apiUrl: string = urlStart + getSearchedPhrase() + urlEnd
     const apiResponse: IApiResponse = useApi(apiUrl)
-    const artworks = apiResponse?.data?.records
+    const artworks = apiResponse?.data?.response?.rows
 
     const getArtworksPictures = () => {
         artworks?.map((artwork) => {
-            if (artwork._primaryImageId !== null) {
+            if (artwork.content.descriptiveNonRepeating.online_media !== undefined) {
                 artworksArray.push(artwork)
             } 
         });
@@ -27,16 +28,19 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
     }, [artworks])
 
     return (
-        <Institution institutionName = 'Albert And Victoria Museum'>
+        <Institution 
+            isOpen = { false }
+            institutionName = 'Smithsonian Institute - Art Design'
+        >
             <Suspense fallback={<p>Loading...</p>}>
                 { artworksWithPictures?.map((artwork, key) => {
                         return (
                             <Artwork 
-                                key = { artwork.systemNumber }
+                                key = { artwork.id }
                                 priority = { key < 10 ? true : false }
-                                source = { `https://framemark.vam.ac.uk/collections/${artwork._primaryImageId}/full/500,/0/default.jpg`} 
-                                title = { artwork?.title } 
-                                author = { artwork?._primaryMaker?.name } 
+                                source = { artwork.content.descriptiveNonRepeating?.online_media?.media[0]?.content } 
+                                title = { artwork.title } 
+                                author = { artwork.content.freetext.name ? artwork.content.freetext.name[0].content : undefined } 
                             />
                         )
                     })

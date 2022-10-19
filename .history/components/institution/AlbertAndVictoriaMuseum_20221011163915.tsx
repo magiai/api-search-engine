@@ -27,7 +27,9 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
     }, [artworks])
 
     return (
-        <Institution institutionName = 'Albert And Victoria Museum'>
+        <Institution 
+            institutionName = 'Albert And Victoria Museum'
+        >
             <Suspense fallback={<p>Loading...</p>}>
                 { artworksWithPictures?.map((artwork, key) => {
                         return (
