@@ -18,11 +18,7 @@ export const ArtInstituteOfChicago = (): JSX.Element => {
             institutionName = 'Art Institute Of Chicago'
         >
             <Suspense fallback={<p>Loading...</p>}>
-                <ArtworksValidation 
-                    status = {apiResponse.status} 
-                    statusText = {apiResponse.statusText} 
-                    hasArtworks = {artworks?.length > 0}
-                >
+                <ArtworksValidation hasArtworks = {artworks?.length > 0}>
                     { artworks?.map((artwork, key) => {
                             return (
                                 <Artwork 

@@ -8,8 +8,8 @@ export type IApiResponse = {
 }
 
 export const useApi = (institutionUrl: string): IApiResponse => {
-    const [status, setStatus] = useState<Number>(0)
-    const [statusText, setStatusText] = useState<String>('')
+    const [status, setStatus] = useState<number>(0)
+    const [statusText, setStatusText] = useState<string>('')
     const [data, setData] = useState<any>()
     const [error, setError] = useState<any>()
 
@@ -18,6 +18,7 @@ export const useApi = (institutionUrl: string): IApiResponse => {
         try {
             const apiResponse = await fetch(institutionUrl)
             const json = await apiResponse.json()
+            console.log(apiResponse)
             setStatus(apiResponse.status)
             setStatusText(apiResponse.statusText)
             setData(json)

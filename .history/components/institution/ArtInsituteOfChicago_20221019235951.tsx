@@ -1,6 +1,6 @@
 import { Suspense } from "react"
 import { Institution } from "./Institution"
-import { ArtworksValidation } from "../artwork/Artworks"
+import { Artworks } from "../artwork/Artworks"
 import { Artwork } from "../artwork/Artwork"
 import { useApi, IApiResponse } from "../../api/useApiHook"
 import getSearchedPhrase from "../search/searchedPhrase"
@@ -18,11 +18,7 @@ export const ArtInstituteOfChicago = (): JSX.Element => {
             institutionName = 'Art Institute Of Chicago'
         >
             <Suspense fallback={<p>Loading...</p>}>
-                <ArtworksValidation 
-                    status = {apiResponse.status} 
-                    statusText = {apiResponse.statusText} 
-                    hasArtworks = {artworks?.length > 0}
-                >
+                <Artworks artworks = {artworks}>
                     { artworks?.map((artwork, key) => {
                             return (
                                 <Artwork 
@@ -35,7 +31,7 @@ export const ArtInstituteOfChicago = (): JSX.Element => {
                             )
                         })
                     }
-                </ArtworksValidation>
+                </Artworks>
             </Suspense>
         </Institution>
     )

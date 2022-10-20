@@ -18,6 +18,7 @@ export const useApi = (institutionUrl: string): IApiResponse => {
         try {
             const apiResponse = await fetch(institutionUrl)
             const json = await apiResponse.json()
+            console.log(apiResponse)
             setStatus(apiResponse.status)
             setStatusText(apiResponse.statusText)
             setData(json)

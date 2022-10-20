@@ -10,7 +10,7 @@ export const ArtInstituteOfChicago = (): JSX.Element => {
     const urlEnd: string = '&limit=30&fields=id,title,image_id,color,artist_title'
     const apiUrl: string = urlStart + getSearchedPhrase() + urlEnd
     const apiResponse: IApiResponse = useApi(apiUrl)
-    const artworks = apiResponse?.data?.data
+    const { artworks = apiResponse?.data?.data
 
     return (
         <Institution 

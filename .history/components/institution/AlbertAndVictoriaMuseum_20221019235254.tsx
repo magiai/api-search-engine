@@ -1,6 +1,6 @@
 import { useState, useMemo, Suspense } from 'react'
 import { Institution } from "./Institution"
-import { ArtworksValidation } from '../artwork/Artworks'
+import { Artworks } from '../artwork/Artworks'
 import { Artwork } from "../artwork/Artwork"
 import { useApi, IApiResponse } from "../../api/useApiHook"
 import getSearchedPhrase  from "../search/searchedPhrase"
@@ -8,10 +8,12 @@ import getSearchedPhrase  from "../search/searchedPhrase"
 export const AlbertAndVictoriaMuseum = (): JSX.Element => {
     let artworksArray = []
     const [artworksWithPictures, setArtworksWithPictures] = useState<any[]>([])
+    const [hasArtworks, setHasArtworks] = useState<boolean>(false)
     const urlStart = 'https://api.vam.ac.uk/v2/objects/search?q=$'
     const apiUrl: string = urlStart + getSearchedPhrase()
     const apiResponse: IApiResponse = useApi(apiUrl)
     const artworks = apiResponse?.data?.records
+    console.log(apiResponse?.data)
 
     const getArtworksPictures = () => {
         artworks?.map((artwork) => {
@@ -24,17 +26,14 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
     }
 
     useMemo(() => {
+
         return getArtworksPictures()
-    }, [artworks])
+    }, [artworks]) //wywołaj funkcję tylko jeśli artworks.length > 0
 
     return (
         <Institution institutionName = 'Albert And Victoria Museum'>
             <Suspense fallback={<p>Loading...</p>}>
-                <ArtworksValidation 
-                    status = {apiResponse.status} 
-                    statusText = {apiResponse.statusText} 
-                    hasArtworks = {artworksWithPictures?.length > 0}
-                >
+                <Artworks artworks = {artworksWithPictures}>
                     { artworksWithPictures.map((artwork, key) => 
                         <Artwork 
                             key = { artwork.systemNumber }
@@ -45,7 +44,7 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
                         />
                         )
                     }
-                </ArtworksValidation>
+                </Artworks>
             </Suspense>
         </Institution>
     )

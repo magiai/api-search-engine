@@ -12,6 +12,8 @@ export const ArtInstituteOfChicago = (): JSX.Element => {
     const apiResponse: IApiResponse = useApi(apiUrl)
     const artworks = apiResponse?.data?.data
 
+    console.log('chciago')
+
     return (
         <Institution 
             isOpen = { true }

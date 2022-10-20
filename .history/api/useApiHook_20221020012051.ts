@@ -18,6 +18,7 @@ export const useApi = (institutionUrl: string): IApiResponse => {
         try {
             const apiResponse = await fetch(institutionUrl)
             const json = await apiResponse.json()
+            console.log(apiResponse)
             setStatus(apiResponse.status)
             setStatusText(apiResponse.statusText)
             setData(json)
@@ -25,7 +26,7 @@ export const useApi = (institutionUrl: string): IApiResponse => {
         catch (error) {
             switch (status) {
                 case 0:
-                    setStatusText("There was a probably a problem with Internet connection.")
+                    setStatusText("XYZ There was a probably a problem with Internet connection.")
                     break;
             
                 default:

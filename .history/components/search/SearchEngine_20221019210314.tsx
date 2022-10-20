@@ -6,6 +6,7 @@ import searchStyles from './search.module.css'
 
 export const SearchEngine = (): JSX.Element => {
     const dispatch = useAppDispatch()
+    console.log()
     const [phraseValue, setSearchValue] = useState<string>(initialState.value)
 
     const handleSearchValueChange = (event: any) => {
@@ -32,10 +33,10 @@ export const SearchEngine = (): JSX.Element => {
                 onChange = { handleSearchValueChange }
             />
             <button 
+                className = { formStyles.input } 
                 type='submit' 
                 name="submit-search" 
-                id="submit-search"
-            >Search
+                id="submit-search">Search
             </button>
         </form>
     );

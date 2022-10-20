@@ -12,6 +12,7 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
     const apiUrl: string = urlStart + getSearchedPhrase()
     const apiResponse: IApiResponse = useApi(apiUrl)
     const artworks = apiResponse?.data?.records
+    console.log(apiResponse?.error)
 
     const getArtworksPictures = () => {
         artworks?.map((artwork) => {
@@ -30,11 +31,7 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
     return (
         <Institution institutionName = 'Albert And Victoria Museum'>
             <Suspense fallback={<p>Loading...</p>}>
-                <ArtworksValidation 
-                    status = {apiResponse.status} 
-                    statusText = {apiResponse.statusText} 
-                    hasArtworks = {artworksWithPictures?.length > 0}
-                >
+                <ArtworksValidation hasArtworks = {artworksWithPictures?.length > 0}>
                     { artworksWithPictures.map((artwork, key) => 
                         <Artwork 
                             key = { artwork.systemNumber }

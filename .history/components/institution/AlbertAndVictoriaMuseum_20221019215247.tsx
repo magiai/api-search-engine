@@ -1,6 +1,5 @@
 import { useState, useMemo, Suspense } from 'react'
 import { Institution } from "./Institution"
-import { ArtworksValidation } from '../artwork/Artworks'
 import { Artwork } from "../artwork/Artwork"
 import { useApi, IApiResponse } from "../../api/useApiHook"
 import getSearchedPhrase  from "../search/searchedPhrase"
@@ -24,28 +23,24 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
     }
 
     useMemo(() => {
+        console.log('halko')
         return getArtworksPictures()
-    }, [artworks])
+    }, [artworks.length > 0])
 
     return (
         <Institution institutionName = 'Albert And Victoria Museum'>
             <Suspense fallback={<p>Loading...</p>}>
-                <ArtworksValidation 
-                    status = {apiResponse.status} 
-                    statusText = {apiResponse.statusText} 
-                    hasArtworks = {artworksWithPictures?.length > 0}
-                >
-                    { artworksWithPictures.map((artwork, key) => 
-                        <Artwork 
-                            key = { artwork.systemNumber }
-                            priority = { key < 10 ? true : false }
-                            source = { `https://framemark.vam.ac.uk/collections/${artwork._primaryImageId}/full/500,/0/default.jpg`} 
-                            title = { artwork?.title } 
-                            author = { artwork?._primaryMaker?.name } 
-                        />
-                        )
-                    }
-                </ArtworksValidation>
+                { artworksWithPictures.length > 0 ? artworksWithPictures.map((artwork, key) => 
+                    <Artwork 
+                        key = { artwork.systemNumber }
+                        priority = { key < 10 ? true : false }
+                        source = { `https://framemark.vam.ac.uk/collections/${artwork._primaryImageId}/full/500,/0/default.jpg`} 
+                        title = { artwork?.title } 
+                        author = { artwork?._primaryMaker?.name } 
+                    />
+                    ): <p>No results for this phrase found.</p>
+                }
+                    
             </Suspense>
         </Institution>
     )

@@ -34,8 +34,7 @@ export const SearchEngine = (): JSX.Element => {
             <button 
                 type='submit' 
                 name="submit-search" 
-                id="submit-search"
-            >Search
+                id="submit-search">Search
             </button>
         </form>
     );

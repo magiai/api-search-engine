@@ -10,7 +10,7 @@ export const ArtInstituteOfChicago = (): JSX.Element => {
     const urlEnd: string = '&limit=30&fields=id,title,image_id,color,artist_title'
     const apiUrl: string = urlStart + getSearchedPhrase() + urlEnd
     const apiResponse: IApiResponse = useApi(apiUrl)
-    const artworks = apiResponse?.data?.data
+    const { data, status, statusText } = apiResponse?.data
 
     return (
         <Institution 
@@ -19,11 +19,11 @@ export const ArtInstituteOfChicago = (): JSX.Element => {
         >
             <Suspense fallback={<p>Loading...</p>}>
                 <ArtworksValidation 
-                    status = {apiResponse.status} 
-                    statusText = {apiResponse.statusText} 
-                    hasArtworks = {artworks?.length > 0}
+                    status = {status} 
+                    statusText = {statusText} 
+                    hasArtworks = {data?.length > 0}
                 >
-                    { artworks?.map((artwork, key) => {
+                    { data?.map((artwork, key) => {
                             return (
                                 <Artwork 
                                     key = { artwork.id }

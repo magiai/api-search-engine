@@ -58,9 +58,7 @@ button {
     padding: 0.25em 0.5em;
     background-color: var(--color--white);
     border-radius: 0.4rem;
-    border: var(--button__border);
+    border: var(--input__border);
     margin-bottom: 1em;
-    line-height: 1;
-    height: var(--button__height);
 }
 

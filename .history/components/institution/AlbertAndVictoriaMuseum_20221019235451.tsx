@@ -1,6 +1,6 @@
 import { useState, useMemo, Suspense } from 'react'
 import { Institution } from "./Institution"
-import { ArtworksValidation } from '../artwork/Artworks'
+import { Artworks } from '../artwork/Artworks'
 import { Artwork } from "../artwork/Artwork"
 import { useApi, IApiResponse } from "../../api/useApiHook"
 import getSearchedPhrase  from "../search/searchedPhrase"
@@ -12,6 +12,7 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
     const apiUrl: string = urlStart + getSearchedPhrase()
     const apiResponse: IApiResponse = useApi(apiUrl)
     const artworks = apiResponse?.data?.records
+    console.log(apiResponse?.data)
 
     const getArtworksPictures = () => {
         artworks?.map((artwork) => {
@@ -30,11 +31,7 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
     return (
         <Institution institutionName = 'Albert And Victoria Museum'>
             <Suspense fallback={<p>Loading...</p>}>
-                <ArtworksValidation 
-                    status = {apiResponse.status} 
-                    statusText = {apiResponse.statusText} 
-                    hasArtworks = {artworksWithPictures?.length > 0}
-                >
+                <Artworks artworks = {artworksWithPictures}>
                     { artworksWithPictures.map((artwork, key) => 
                         <Artwork 
                             key = { artwork.systemNumber }
@@ -45,7 +42,7 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
                         />
                         )
                     }
-                </ArtworksValidation>
+                </Artworks>
             </Suspense>
         </Institution>
     )

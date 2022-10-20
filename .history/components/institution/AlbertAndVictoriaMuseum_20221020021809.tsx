@@ -12,6 +12,7 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
     const apiUrl: string = urlStart + getSearchedPhrase()
     const apiResponse: IApiResponse = useApi(apiUrl)
     const artworks = apiResponse?.data?.records
+    console.log('albert')
 
     const getArtworksPictures = () => {
         artworks?.map((artwork) => {

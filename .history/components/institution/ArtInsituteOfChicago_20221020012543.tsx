@@ -11,6 +11,7 @@ export const ArtInstituteOfChicago = (): JSX.Element => {
     const apiUrl: string = urlStart + getSearchedPhrase() + urlEnd
     const apiResponse: IApiResponse = useApi(apiUrl)
     const artworks = apiResponse?.data?.data
+    console.log(apiResponse)
 
     return (
         <Institution 
