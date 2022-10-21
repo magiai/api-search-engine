@@ -1,4 +1,4 @@
-import { useMemo, Suspense } from 'react'
+import { useState, useMemo, Suspense } from 'react'
 import { Institution } from "./Institution"
 import { ArtworksValidation } from '../artwork/Artworks'
 import { Artwork } from "../artwork/Artwork"
@@ -6,8 +6,8 @@ import { useApi, IApiResponse } from "../../api/useApiHook"
 import getSearchedPhrase  from "../search/searchedPhrase"
 
 export const AlbertAndVictoriaMuseum = (): JSX.Element => {
-    let artworksWithPictureArray: Array<any> = []
-    const urlStart: string = 'https://api.vam.ac.uk/v2/objects/search?q=$'
+    let artworksWithPictureArray = []
+    const urlStart = 'https://api.vam.ac.uk/v2/objects/search?q=$'
     const apiUrl: string = urlStart + getSearchedPhrase()
     const apiResponse: IApiResponse = useApi(apiUrl)
     const artworks = apiResponse?.data?.records
@@ -17,8 +17,9 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
             if (artwork._primaryImageId !== null) {
                 artworksWithPictureArray.push(artwork)
             } 
-        })
-        return artworksWithPictureArray
+        });
+
+        return artworksWithPictureArray;
     }, [artworks])
 
     return (

@@ -1,4 +1,4 @@
-import { useMemo, Suspense } from 'react'
+import { useState, useMemo, Suspense } from 'react'
 import { Institution } from "./Institution"
 import { ArtworksValidation } from '../artwork/Artworks'
 import { Artwork } from "../artwork/Artwork"
@@ -6,7 +6,7 @@ import { useApi, IApiResponse } from "../../api/useApiHook"
 import getSearchedPhrase  from "../search/searchedPhrase"
 
 export const AlbertAndVictoriaMuseum = (): JSX.Element => {
-    let artworksWithPictureArray: Array<any> = []
+    let artworksWithPictureArray: Array<object> = []
     const urlStart: string = 'https://api.vam.ac.uk/v2/objects/search?q=$'
     const apiUrl: string = urlStart + getSearchedPhrase()
     const apiResponse: IApiResponse = useApi(apiUrl)

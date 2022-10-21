@@ -1,4 +1,4 @@
-import { useMemo, Suspense } from 'react'
+import { useState, useMemo, Suspense } from 'react'
 import { Institution } from "./Institution"
 import { ArtworksValidation } from '../artwork/Artworks'
 import { Artwork } from "../artwork/Artwork"
