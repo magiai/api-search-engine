@@ -29,7 +29,7 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
                         <Artwork 
                             key = { artwork.systemNumber }
                             priority = { key < 10 ? true : false }
-                            source = { `https://framemark.vam.ac.uk/collections/${artwork._primaryImageId}/full/400,/0/default.jpg`} 
+                            source = { `https://framemark.vam.ac.uk/collections/${artwork._primaryImageId}/full/500,/0/default.jpg`} 
                             title = { artwork?.title } 
                             author = { artwork?._primaryMaker?.name } 
                         />

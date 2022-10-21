@@ -29,7 +29,7 @@ export const ArtInstituteOfChicago = (): JSX.Element => {
                                 <Artwork 
                                     key = { artwork.id }
                                     priority = { key < 10 ? true : false }
-                                    source = { `https://www.artic.edu/iiif/2/${artwork.image_id}/full/400,/0/default.jpg`} 
+                                    source = { `https://www.artic.edu/iiif/2/${artwork.image_id}/full/640,/0/default.jpg`} 
                                     title = { artwork.title } 
                                     author = { artwork.artist_title } 
                                 />

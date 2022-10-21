@@ -6,6 +6,7 @@ import { useApi, IApiResponse } from "../../api/useApiHook"
 import getSearchedPhrase  from "../search/searchedPhrase"
 
 export const SmithsonianInstitutionArtDesign = (): JSX.Element => {
+    let artworksWithPictureArray: Array<any> = []
     const urlStart: string = 'https://api.si.edu/openaccess/api/v1.0/category/art_design/search?q='
     const urlEnd: string = '&api_key=h4EFHdtQ2Buaa56YASGozM68gzw1NFka61spYM44&rows=50'
     const apiUrl: string = urlStart + getSearchedPhrase() + urlEnd
@@ -13,10 +14,24 @@ export const SmithsonianInstitutionArtDesign = (): JSX.Element => {
     const artworks = apiResponse?.data?.response?.rows
     const deferredArtworks = useDeferredValue(artworks)
 
-    const artworksWithPictures = useMemo(() => {
-        const validArtworks = deferredArtworks?.filter(artwork => artwork.content.descriptiveNonRepeating.online_media !== undefined)
-        return validArtworks
+    // const list = useMemo(() => {
+    //     return largeList.filter(item => item.name.includes(deferredName))
+    //   }, [deferredName])
+
+    const getArtworksPictures = useMemo(() => {
+        return deferredArtworks.filter(artwork => artwork.content.descriptiveNonRepeating.online_media !== undefined)
+        // deferredArtworks?.map(artwork => {
+        //     if (artwork.content.descriptiveNonRepeating.online_media !== undefined) {
+        //         artworksWithPictureArray.push(artwork)
+        //     } 
+        // })
+        // return artworksWithPictureArray
     }, [deferredArtworks])
+
+    
+    // const list = useMemo(() => {
+    //   return largeList.filter(item => item.name.includes(deferredName))
+    // }, [deferredName])
 
     return (
         <Institution 
@@ -27,9 +42,9 @@ export const SmithsonianInstitutionArtDesign = (): JSX.Element => {
                 <ArtworksValidation 
                     status = {apiResponse.status} 
                     statusText = {apiResponse.statusText} 
-                    hasArtworks = {artworksWithPictures?.length > 0}
+                    hasArtworks = {getArtworksPictures?.length > 0}
                 >
-                    { artworksWithPictures?.map((artwork, key) => {
+                    { getArtworksPictures.map((artwork, key) => {
                             return (
                                 <Artwork 
                                     key = { artwork.id }
