@@ -13,7 +13,8 @@
 }
 
 .figure figcaption {
-    max-width: 40rem;
+    /* max-width: min(40rem, 100%); */
+    width: max(90vw, 40rem);
     margin-right: auto;
     margin-left: auto;
     margin-top: var(--space--s);

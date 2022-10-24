@@ -5,48 +5,59 @@
 
 .figure {
     text-align: center;
-    max-width: 64rem;
-}
-
-.figure:hover {
-    z-index: 2;
 }
 
 .figure figcaption {
-    max-width: 40rem;
+    max-width: min(64rem, 100%);
+    min-width: 40rem;
     margin-right: auto;
     margin-left: auto;
     margin-top: var(--space--s);
 }
 
 .figure span:first-child {
-    height: 64rem !important;
     position: relative !important;
     overflow: unset !important;
     margin: auto;
+    container-type: inline-size;
 }
 
 @media only screen and (max-width: 768px) {
     .figure span:first-child {
-        width: calc(100vw - 0.1rem) !important;
+        height: 56rem !important;
+        width: calc(100vw - 1rem) !important;
     }
 }
+
 
 @media only screen and (min-width: 769px) {
-    
     .figure span:first-child {
-        width: 40rem !important;
-    }
-
-    .figure span:first-child img:hover {
-        -webkit-transform:scale(1.5);
-        transform: scale(1.5);
+        height: 64rem !important;
+        width: max(40rem, 100%) !important;
     }
 }
+
+@container (max-width: 401px) {
+    .figure span:first-child {
+        background-color: yellow !important;
+        width: 64rem !important;
+        height: max(36rem, 100%) !important;
+    }
+}
+
 
 .figure img {
     margin: var(--space--xs);
+    z-index: 1;
     object-fit: contain;
+    /* -webkit-transform:scale(0.7);
+    transform: scale(0.7); */
+}
+
+.figure:hover img {
+    /* -webkit-transform:scale(1.2);
+    transform: scale(1.2); */
+    z-index: 2;
 }
 
 .figure img[aria-hidden="true"] {

@@ -15,7 +15,9 @@ export const ArtworkImage = ({ priority, source, title, author }: ArtworkImagePr
             src = { source }
             alt = {`${ title } by ${ author }`}
             layout="fill"
-            sizes="(max-width: 768px) 380px, 640px"
+            height="640px"
+            width="400px"
+            // sizes="(max-width: 768px) 380px, 640px"
         />
     )
 } 

@@ -13,6 +13,7 @@
 }
 
 .figure figcaption {
+    /* max-width: min(40rem, 100%); */
     max-width: 40rem;
     margin-right: auto;
     margin-left: auto;

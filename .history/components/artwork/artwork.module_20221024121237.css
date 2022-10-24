@@ -13,14 +13,14 @@
 }
 
 .figure figcaption {
-    max-width: 40rem;
+    /* max-width: min(40rem, 100%); */
+    width: 40rem;
     margin-right: auto;
     margin-left: auto;
     margin-top: var(--space--s);
 }
 
 .figure span:first-child {
-    height: 64rem !important;
     position: relative !important;
     overflow: unset !important;
     margin: auto;
@@ -28,6 +28,7 @@
 
 @media only screen and (max-width: 768px) {
     .figure span:first-child {
+        height: 56rem !important;
         width: calc(100vw - 0.1rem) !important;
     }
 }
@@ -35,6 +36,8 @@
 @media only screen and (min-width: 769px) {
     
     .figure span:first-child {
+        /* container-type: inline-size; */
+        height: 64rem !important;
         width: 40rem !important;
     }
 
@@ -42,6 +45,8 @@
         -webkit-transform:scale(1.5);
         transform: scale(1.5);
     }
+    /* @container (max-width: 401px) {
+    } */
 }
 
 .figure img {
