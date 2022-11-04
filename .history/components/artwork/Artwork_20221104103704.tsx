@@ -20,12 +20,12 @@ export const Artwork = ({
             <ArtworkImage
                 priority = { priority } 
                 source = { source } 
-                title = { title ||= 'Title unknown' } 
-                author = { author ||= 'Author unknown' }
+                title = { title ??= 'Title unknown' } 
+                author = { author ??= 'Author unknown' }
             />
             <ArtworkCaption 
                 title = { title ||= 'Title unknown' } 
-                author = { author ||= 'Author unknown' } 
+                author = { author ??= 'Author unknown' } 
             />
         </figure>
     )

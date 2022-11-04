@@ -17,6 +17,8 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
         return validArtworks
     }, [deferredArtworks])
 
+    console.log(artworksWithPictures)
+
     return (
         <Institution institutionName = 'Albert And Victoria Museum'>
             <Suspense fallback={<p>Loading...</p>}>

@@ -26,11 +26,12 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
                     hasArtworks = {artworksWithPictures?.length > 0}
                 >
                     { artworksWithPictures?.map((artwork, key) => 
+                    console.log(artwork)
                         <Artwork 
                             key = { artwork.systemNumber }
                             priority = { key < 10 ? true : false }
                             source = { `https://framemark.vam.ac.uk/collections/${artwork._primaryImageId}/full/640,/0/default.jpg`} 
-                            title = { artwork?._primaryTitle } 
+                            title = { artwork?.title } 
                             author = { artwork?._primaryMaker?.name } 
                         />
                         )

@@ -17,6 +17,8 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
         return validArtworks
     }, [deferredArtworks])
 
+    console.log(artworksWithPictures)
+
     return (
         <Institution institutionName = 'Albert And Victoria Museum'>
             <Suspense fallback={<p>Loading...</p>}>
@@ -30,7 +32,7 @@ export const AlbertAndVictoriaMuseum = (): JSX.Element => {
                             key = { artwork.systemNumber }
                             priority = { key < 10 ? true : false }
                             source = { `https://framemark.vam.ac.uk/collections/${artwork._primaryImageId}/full/640,/0/default.jpg`} 
-                            title = { artwork?._primaryTitle } 
+                            title = { artwork?.title } 
                             author = { artwork?._primaryMaker?.name } 
                         />
                         )
